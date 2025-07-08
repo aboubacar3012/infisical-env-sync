@@ -1,6 +1,6 @@
 {
   "name": "@aboubacar3012/infisical-env-sync",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Aboubacar Diallo",
   "description": "Sync Infisical secrets to your .env files easily. Compatible with Next.js, React and all Node.js frameworks.",
   "main": "src/index.js",

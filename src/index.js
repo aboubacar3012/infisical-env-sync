@@ -2,6 +2,7 @@
 require('dotenv').config();
 const { InfisicalSDK } = require('@infisical/sdk');
 const fs = require('fs');
+const path = require('path');
 
 const getClient = (() => {
   let clientInstance = null;
@@ -56,4 +57,64 @@ const syncEnv = async ({
   return { added: newVars.length };
 };
 
-module.exports = { syncEnv };
+// Nouvelle fonction spécifique pour Next.js
+const syncNextEnv = async ({
+  env = 'development',
+  projectRoot = process.cwd(),
+  config = {},
+} = {}) => {
+  const envMapping = {
+    development: '.env.development',
+    production: '.env.production',
+    test: '.env.test'
+  };
+  
+  const envFile = envMapping[env] || '.env.local';
+  const envPath = path.join(projectRoot, envFile);
+  
+  return await syncEnv({
+    env,
+    envPath,
+    config
+  });
+};
+
+// Fonction pour détecter si on est dans un projet Next.js
+const isNextProject = (projectRoot = process.cwd()) => {
+  const packageJsonPath = path.join(projectRoot, 'package.json');
+  if (fs.existsSync(packageJsonPath)) {
+    try {
+      const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+      return !!(packageJson.dependencies?.next || packageJson.devDependencies?.next);
+    } catch {
+      return false;
+    }
+  }
+  return false;
+};
+
+// Fonction intelligente qui détecte automatiquement le type de projet
+const smartSync = async ({
+  env = 'development',
+  envPath,
+  config = {},
+} = {}) => {
+  // Si envPath n'est pas spécifié, on détecte automatiquement
+  if (!envPath) {
+    if (isNextProject()) {
+      console.log('🔍 Projet Next.js détecté, utilisation de .env.local');
+      return await syncNextEnv({ env, config });
+    } else {
+      envPath = '.env';
+    }
+  }
+  
+  return await syncEnv({ env, envPath, config });
+};
+
+module.exports = { 
+  syncEnv, 
+  syncNextEnv, 
+  smartSync, 
+  isNextProject 
+};

@@ -1,0 +1,24 @@
+{
+  "name": "@aboubacar3012/infisical-env-sync",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "infisical-env-sync": "./bin/infisical-env-sync.js"
+  },
+  "repository": "https://github.com/aboubacar3012/infisical-env-sync.git",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@infisical/sdk": "^4.0.2",
+    "dotenv": "^17.1.0",
+    "yargs": "^18.0.0"
+  }
+}

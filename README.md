@@ -36,6 +36,7 @@ Créez un fichier `.env` avec vos credentials Infisical :
 CLIENT_ID=your_infisical_client_id
 CLIENT_SECRET=your_infisical_client_secret
 PROJECT_ID=your_infisical_project_id
+SITE_URL=https://app.infisical.com # URL de votre instance Infisical
 ```
 
 ## 🔧 Utilisation

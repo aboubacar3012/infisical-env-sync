@@ -1,8 +1,8 @@
 {
   "name": "@aboubacar3012/infisical-env-sync",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Aboubacar Diallo",
-  "description": "Sync Infisical secrets to your .env files easily.",
+  "description": "Sync Infisical secrets to your .env files easily. Compatible with Next.js, React and all Node.js frameworks.",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,7 +11,18 @@
     "infisical-env-sync": "./bin/infisical-env-sync.js"
   },
   "repository": "https://github.com/aboubacar3012/infisical-env-sync.git",
-  "keywords": [],
+  "keywords": [
+    "infisical",
+    "env",
+    "environment",
+    "secrets",
+    "sync",
+    "nextjs",
+    "react",
+    "nodejs",
+    "dotenv",
+    "configuration"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -19,6 +30,9 @@
   "dependencies": {
     "@infisical/sdk": "^4.0.2",
     "dotenv": "^17.1.0",
-    "yargs": "^18.0.0"
+    "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
